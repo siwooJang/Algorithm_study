@@ -29,3 +29,5 @@ int main(){
     getchar(); getchar();
     return 0;
 }
+
+// 참고 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ephraimdrlee&logNo=221527277790
