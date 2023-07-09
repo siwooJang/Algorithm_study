@@ -25,12 +25,8 @@
  <p>입력의 첫 줄에는 테스트 케이스의 개수 T가 주어진다. 그 다음 줄부터 각각의 테스트 케이스에 대해 정수 a와 b가 주어진다. (1 ≤ a < 100, 1 ≤ b < 1,000,000)</p>
 
 ### 출력 
-
+ <p>각 테스트 케이스에 대해 마지막 데이터가 처리되는 컴퓨터의 번호를 출력한다.</p>
+ 
 ### 참고자료
 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ephraimdrlee&logNo=221527277790
-
- <p>각 테스트 케이스에 대해 마지막 데이터가 처리되는 컴퓨터의 번호를 출력한다.</p>
-
- 참고 :
- // 참고 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ephraimdrlee&logNo=221527277790
 
