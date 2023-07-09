@@ -28,3 +28,8 @@
 
 <p>수열은 사전 순으로 증가하는 순서로 출력해야 한다.</p>
 
+### 참고
+
+https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0C/15649.cpp
+https://www.youtube.com/watch?v=Enz2csssTCs&ab_channel=BaaarkingDog
+
