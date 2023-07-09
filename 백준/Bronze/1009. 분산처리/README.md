@@ -26,5 +26,11 @@
 
 ### 출력 
 
+### 참고자료
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ephraimdrlee&logNo=221527277790
+
  <p>각 테스트 케이스에 대해 마지막 데이터가 처리되는 컴퓨터의 번호를 출력한다.</p>
+
+ 참고 :
+ // 참고 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ephraimdrlee&logNo=221527277790
 
