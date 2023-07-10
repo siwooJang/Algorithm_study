@@ -31,5 +31,5 @@
 ### 참고
 
 https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0C/15649.cpp
-https://www.youtube.com/watch?v=Enz2csssTCs&ab_channel=BaaarkingDog
+https://blog.encrypted.gg/945
 
