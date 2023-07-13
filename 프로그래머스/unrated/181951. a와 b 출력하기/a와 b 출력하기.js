@@ -11,3 +11,10 @@ rl.on('line', function (line) {
     console.log('a =',a)
     console.log('b =',b)
 })
+
+// 원래 했던 내용 
+// rl.on('line', function (line) {
+//     input = line.split(' ');
+// }).on('close', function () {
+//     console.log(Number(input[0]) + Number(input[1]));
+// });
