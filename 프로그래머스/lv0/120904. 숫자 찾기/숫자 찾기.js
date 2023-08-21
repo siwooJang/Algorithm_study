@@ -1,9 +1,8 @@
 function solution(num, k) {
-    let n = num.toString().split("")
-    for(let i=0; i<n.length;i++){
-        if(Number(n[i])===k){
-            return i+1
-        }
+    let index = num.toString().split("").indexOf(k.toString());
+    if( index === -1 ){
+        return -1
+    }else{
+        return index+1
     }
-    return -1
 }
