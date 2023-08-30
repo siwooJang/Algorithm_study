@@ -17,6 +17,6 @@ function solution(keyinput, board) {
                 b++
         }
     }
-    let result = [a,b]
-    return result
+
+    return [a,b]
 }
