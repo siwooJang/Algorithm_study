@@ -1,9 +1,10 @@
 function solution(participant, completion) {
     participant.sort()
     completion.sort()
-    while(participant.length){
-        let pp = participant.pop()
-        if ( pp != completion.pop())
-            return pp
+    for(let i =0; i<participant.length; i++){
+        if(participant[i]!=completion[i]){
+            return participant[i]
+        }
     }
 }
+
