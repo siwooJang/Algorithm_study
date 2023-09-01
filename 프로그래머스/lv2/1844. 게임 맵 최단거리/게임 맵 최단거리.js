@@ -1,12 +1,12 @@
 function solution(maps) {
-  const n = maps.length;
-  const m = maps[0].length;
+  let n = maps.length;
+  let m = maps[0].length;
   
   // 방향: 상, 하, 좌, 우
   const dx = [-1, 1, 0, 0];
   const dy = [0, 0, -1, 1];
   
-  const queue = [];
+  let queue = [];
   queue.push([0, 0, 1]); // [x좌표, y좌표, 이동 횟수]
 
   while (queue.length > 0) {
