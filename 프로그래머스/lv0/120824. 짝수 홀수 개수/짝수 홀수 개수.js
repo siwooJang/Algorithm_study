@@ -1,12 +1,11 @@
 function solution(num_list) {
-    let a = 0;
-    let b = 0;
-    for(let i=0; i<num_list.length;i++){
-        if(num_list[i]%2==0){
-            a++
-        }else{
-            b++
+    let result = [0,0]
+    for(items of num_list){
+        if((items%2) == 0){
+            result[0] += 1
+        } else {
+            result[1] += 1
         }
     }
-    return [a,b]
+    return result
 }
