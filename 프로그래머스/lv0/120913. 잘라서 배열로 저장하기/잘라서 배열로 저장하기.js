@@ -1,7 +1,3 @@
 function solution(my_str, n) {
-    let arr = []
-    for(let i=0; i<my_str.length;i+=n){
-        arr.push(my_str.substr(i,n))
-    }
-    return arr
+    return my_str.match(new RegExp(`.{1,${n}}`,'g'))
 }
