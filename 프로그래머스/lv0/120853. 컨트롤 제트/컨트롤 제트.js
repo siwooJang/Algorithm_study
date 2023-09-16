@@ -1,12 +1,12 @@
 function solution(s) {
-    let result = 0
+    let result = []
     s = s.split(" ")
-    for(let i =0; i<s.length; i++){
-        if(s[i]=='Z'){
-            result -= Number(s[i-1])
-        } else {
-            result += Number(s[i])
+    for(let i of s){
+        if(i==="Z"){
+            result.pop()
+        } else{
+            result.push(+i)
         }
     }
-    return result
+    return result.reduce((a,c)=>a+c,0)
 }
