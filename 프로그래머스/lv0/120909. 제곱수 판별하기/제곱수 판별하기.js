@@ -1,8 +1,4 @@
 function solution(n) {
-    for(let i=1; i*i<=n; i++){
-        if(i*i==n){
-            return 1
-        }
-    }
-    return 2
+    let sqrt = Math.sqrt(n) //sqrt 는 제곱근 
+    return Number.isInteger(sqrt) ? 1 : 2  // integer로 나누어 떨어지면 제곱근임 
 }
