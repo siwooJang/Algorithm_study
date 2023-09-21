@@ -7,7 +7,7 @@ function solution(polynomial) {
   arr.forEach((n) => {
     if (n.includes("x")) {
       const strVal = n.replace("x", "") || "1";  // 여기가 문제였다. replace 생각도 못함.
-      xNum += parseInt(strVal, 10);
+      xNum += parseInt(strVal);
     } else {
 
       num += parseInt(n);
