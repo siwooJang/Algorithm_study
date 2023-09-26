@@ -1,15 +1,8 @@
 function solution(chicken) {
     let result = 0;
-    let numlist = 0;
-    while(true){
-        let tmp = Math.floor(chicken/10)
-        let num = chicken%10
-        result += tmp
-        tmp += num
-        chicken = tmp
-        if(chicken<10){
-            break
-        }
+    while(chicken>=10){
+        result += Math.floor(chicken/10)
+        chicken = (chicken%10) + Math.floor(chicken/10)
     }
-    return Math.floor(result)
+    return result
 }
