@@ -1,21 +1,17 @@
 function solution(answers) {
-    const answer = [];
-    const supo = [ [1,2,3,4,5], [2,1,2,3,2,4,2,5], [3,3,1,1,2,2,4,4,5,5] ]
+    const result = [];
+    const math = [[1,2,3,4,5],[2,1,2,3,2,4,2,5],[3,3,1,1,2,2,4,4,5,5]];
+    let num = [];
     
-    let score = [];
-    
-    for(let i = 0; i < supo.length; i++) {
-        score[i] = answers.filter((el, idx) => 
-            el === supo[i][idx % supo[i].length]).length;
+    for(let i=0; i<math.length;i++){
+        num[i] = answers.filter((v,idx)=>
+            v === math[i][idx%math[i].length]).length
     }
-
-    let max = Math.max(...score);
-  
-    for(let i = 0; i < score.length; i++) {
-     if(score[i] === max){
-        answer.push(i+1)
-      }
+    let max = Math.max(...num)
+    for(let j=0; j<num.length; j++){
+        if(num[j]===max){
+            result.push(j+1)
+        }
     }
-  
-    return answer;
+    return result
 }
