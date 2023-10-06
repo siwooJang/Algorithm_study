@@ -6,3 +6,4 @@
 # 자바스크립트 코테 목차
 ![화면 캡처 2023-10-06 150025](https://github.com/siwooJang/Algorithm_study/assets/88125431/2e5d9c58-6542-4d9a-97a7-33acce2eed51)
 
+![화면 캡처 2023-10-06 1502028](https://github.com/siwooJang/Algorithm_study/assets/88125431/072595ba-9745-4ce3-b653-bf1cf745143b)
