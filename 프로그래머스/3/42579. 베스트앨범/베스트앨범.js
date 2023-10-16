@@ -27,8 +27,8 @@ function solution(genres, plays) {
                 cnt.push(compose[j]);
             }
         }
-
         cnt.sort((a,b)=>b.playCnt-a.playCnt);
+        
         cnt.forEach((c,i)=>{
             if(i<2){
              // 2개만 뽑아야 하기 때문에 index가 2보다 작을때까지만 answer.push 수행
