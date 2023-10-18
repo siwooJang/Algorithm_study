@@ -11,7 +11,7 @@ function solution(priorities, location) {
     while(priorities.length != 0){
          max_value = Math.max(...priorities);
         
-        if(priorities[0] < max_value){ // max보다 작을 시 값,인덱스 둘다 맨앞값 맨뒤로 넣기
+        if(priorities[0] < max_value){ // max보다 작을 시 값,인덱스(arr) 둘다 맨앞값 맨뒤로 넣기
             priorities.push(priorities.shift())
             arr.push(arr.shift());
 
