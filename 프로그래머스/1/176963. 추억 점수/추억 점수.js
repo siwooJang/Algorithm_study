@@ -1,16 +1,7 @@
 function solution(name, yearning, photo) {
-  // 객체를 만들어 점수를 저장한다.
-  // ex) {may: 5, kein: 10, kain: 1, radi: 3}
-  const memory = {};
-  for (let i = 0; i < name.length; i++) {
-    memory[name[i]] = yearning[i];
-  }
-
-  // 각 포토 마다의 점수를 배열로 구해야 하므로 map을 이용한다.
-  return photo.map((arr) =>
-
-    // 각 요소 배열을 reduce 메서드를 이용해 점수를 구한다.
-    // memory 객체에 해당 사람이 있으면 점수를 없으면 0을 더해준다.
-    arr.reduce((acc, cur) => acc + (memory[cur] || 0), 0)
-  );
+    // indexOf로 name에서 해당 사람의 인덱스를 가져온 후, yearning에 데이터로 가져오기
+    // 다만 점수 데이터가 없으면 undefined가 반환되므로 0으로 처리
+    return photo.map((v)=> v.reduce((a, c)=> a += yearning[name.indexOf(c)] ?? 0, 0))
+    // 널 병합 연산자 (??) 는 왼쪽 피연산자가 null 또는 undefined일 때 오른쪽 피연산자를 반환하고, 
+    // 그렇지 않으면 왼쪽 피연산자를 반환하는 논리 연산자
 }
