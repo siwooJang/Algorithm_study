@@ -1,18 +1,16 @@
 function solution(s) {
-    let answer = '';
-    let words = s.split(' ');
-    
-    for (let i = 0; i < words.length; i++) {
-        for(let j = 0; j < words[i].length; j++) {
-            if(j % 2 === 0) {
-                answer += words[i][j].toUpperCase();
-            } else {
-                answer += words[i][j].toLowerCase();
-            }
-        }
-        if (i < words.length -1) {
-            answer += ' ';
-        }
+  const str = s.split(" ");
+  var answer = [];
+
+  let tmp = "";
+  str.forEach((element) => {
+    for (let i = 0; i < element.length; i++) {
+      tmp += i % 2 == 0 ? element[i].toUpperCase() : element[i].toLowerCase();
     }
-    return answer;
+
+    answer.push(tmp);
+    tmp = "";
+  });
+
+  return answer.join(" ");
 }
