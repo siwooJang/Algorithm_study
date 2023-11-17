@@ -6,12 +6,10 @@ function solution(s) {
         if(!stack.includes(str)){
             ans.push(-1);
         }
-              
         if(stack.includes(str)){
-            ans.push(stack.length - stack.lastIndexOf(str));
+            ans.push(stack.length-stack.lastIndexOf(str))
         }
-                   
-        stack.push(str);
+        stack.push(str)
     })
     
     return ans;
