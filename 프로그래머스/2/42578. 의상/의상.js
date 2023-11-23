@@ -8,8 +8,8 @@ function solution(clothes) {
     
     // (옷 종류1 + 안입는경우) * (옷 종류2 + 안입는경우) * ...
     // (a+1) * (b+1) ... , t는 한 종류에 있는 옷 갯수 
-    for( let t in obj){  
-        result *= obj[t] + 1;
+    for( let a in obj){  
+        result *= obj[a] + 1;
     }
 
      return result - 1;// 아무것도 안입는 경우 제외
