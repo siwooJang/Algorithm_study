@@ -1,41 +1,35 @@
 function solution(bandage, health, attacks) {
-    let maxhealth = health;
-    let maxtime = attacks[attacks.length - 1][0];
-    let attack_dict = {};
-    attacks.forEach(attack => {
-        attack_dict[attack[0]] = attack[1];
-    });
+    const [time, heal, bonus] = bandage;
+    const len = attacks[attacks.length - 1][0];
+    let cntSuccess = 0;
+    let curHp = health; // 캐릭터 체력
+    let attackIdx = 0; // 현재 공격 정보
 
-    let t = 0;
-    let continue_sec = 0;
+    for (let i = 1; i <= len; i++) {
+        // 체력이 다 소진 된 경우
+        if (curHp <= 0) return -1;
 
-    while (t <= maxtime) {
-        if (attack_dict.hasOwnProperty(t)) {
-            health -= attack_dict[t];
-            continue_sec = 0;
-
-            // When hit by an attack, your stamina is -1
-            if (health <= 0) {
-                return -1;
-            }
-        } else {
-            continue_sec += 1;
-            if (continue_sec < bandage[0]) {
-                health += bandage[1];
-                if (health > maxhealth) {
-                    health = maxhealth;
-                }
-            } else {
-                health += bandage[1] + bandage[2];
-                if (health > maxhealth) {
-                    health = maxhealth;
-                }
-                continue_sec = 0;
-            }
+        // 공격시간이 된 경우
+        if (attackIdx < attacks.length && i === attacks[attackIdx][0]) {
+            curHp -= attacks[attackIdx][1];
+            cntSuccess = 0;
+            attackIdx++; // 다음 공격 정보로 이동
+            continue;
         }
 
-        t += 1;
+        // 공격시간이 아니면 체력 회복
+        curHp += heal;
+        cntSuccess++;
+
+        if (cntSuccess === time) {
+            curHp += bonus;
+            cntSuccess = 0;
+        }
+
+
+        // curHp가 원래 체력 보다 넘어간 경우 다시 원래 체력으로 재할당
+        if (curHp > health) curHp = health;
     }
 
-    return health;
+    return curHp <= 0 ? -1 : curHp;
 }
