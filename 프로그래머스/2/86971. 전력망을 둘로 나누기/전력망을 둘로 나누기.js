@@ -1,37 +1,45 @@
 function solution(n, wires) {
-    var answer = Number.MAX_SAFE_INTEGER;
-    //트리 만들기
-    let tree = Array.from(Array(n+1),()=>[])
-    wires.map((element)=>{
-        let [a,b] = element;
+    // 인접 리스트 생성
+    const adjList = Array.from({ length: n + 1 }, () => []);
+    wires.forEach(([v1, v2]) => {
+        adjList[v1].push(v2);
+        adjList[v2].push(v1);
+    });
 
-        tree[a].push(b);
-        tree[b].push(a);
-    })
-   
-    function searchTree(root, exceptNum) {
-        let count =0;
-        let visit = [];
-        let queue = [root];
-        visit[root] = true;
-        while(queue.length){
-            let index = queue.pop();
-            tree[index].forEach((element)=>{
-                if(element !== exceptNum && visit[element]!==true){
-                    visit[element] = true;
-                    queue.push(element);
-                }
-            })
-            count++;
-        }
-        
-        return count;
+    let minDifference = n; // 최소 차이 초기화
+
+    // DFS 함수
+    function dfs(node, visited) {
+        visited[node] = true;
+        let nodesCount = 1;
+
+        adjList[node].forEach(adjNode => {
+            if (!visited[adjNode]) {
+                nodesCount += dfs(adjNode, visited);
+            }
+        });
+
+        return nodesCount;
     }
 
-    // wires 값에 만든 함수에 값을 넣어 최솟값을 찾음.
-    wires.forEach(element => {
-        let[a,b] = element;
-        answer = Math.min(answer, Math.abs(searchTree(a,b)-searchTree(b,a)))
+    // 각 전선을 자르고 최소 차이 계산
+    wires.forEach(([v1, v2]) => {
+        // 전선을 자르기
+        adjList[v1] = adjList[v1].filter(adjNode => adjNode !== v2);
+        adjList[v2] = adjList[v2].filter(adjNode => adjNode !== v1);
+
+        // 전송 탑 갯수 계산
+        let visited = new Array(n + 1).fill(false);
+        let nodesCount = dfs(v1, visited);
+
+        // 차이 계산
+        let difference = Math.abs(n - 2 * nodesCount);
+        minDifference = Math.min(minDifference, difference);
+
+        // 전선 복구
+        adjList[v1].push(v2);
+        adjList[v2].push(v1);
     });
-    return answer;
+
+    return minDifference;
 }
