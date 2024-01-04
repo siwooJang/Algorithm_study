@@ -1,17 +1,9 @@
-var twoSum = function (nums, target) {
-
-    let l = 0;
-    let r = 1;
-
-    while(l<nums.length){
-        if(nums[l]+nums[r]===target){
-            return [l,r]
-        }else if(r===nums.length-1){
-            l++;
-            r = l+1;
-        } else {
-            r++;
+var twoSum = function(nums, target) {
+    for(var i=0;i<nums.length;i++){
+        for(var j = i+1;j<nums.length;j++){
+            if(nums[i]+nums[j] == target){
+                return [i,j]
+            }
         }
     }
-
-}
+};
