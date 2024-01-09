@@ -1,6 +1,7 @@
 
 var longestConsecutive = function(nums) {
-    let cnums = new Set(nums);
+    
+    let cnums = new Set(nums); // 중복제거 위함, [] 든 {}든 iterable이니까 상관 X
     let longest= 0;
     
     for(num of cnums){
