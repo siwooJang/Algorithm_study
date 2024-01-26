@@ -1,29 +1,28 @@
-const numIslands = (grid) => {
-  let counter = 0;
-
-  const dfs = (i, j) => {
-    if (
-      i >= 0 &&
-      j >= 0 &&
-      i < grid.length &&
-      j < grid[i].length &&
-      grid[i][j] === '1'
-    ) {
-      grid[i][j] = '0';
-      dfs(i + 1, j); // top
-      dfs(i, j + 1); // right
-      dfs(i - 1, j); // bottom
-      dfs(i, j - 1); // left
+function numIslands(grid){
+    const sink = (r,c) => {
+        grid[r][c] = "0";
+        [
+            [r,c-1],
+            [r,c+1],
+            [r-1,c],
+            [r+1,c]
+        ].forEach(([r,c])=>{
+            if(0<=r && r<grid.length && 0<=c && c<grid[r].length)
+                if(grid[r][c]==="1")
+                    sink(r,c);
+        });
+    };
+    
+    let cnt = 0;
+    for(let r=0; r<grid.length; r++){
+        for(let c=0; c<grid[r].length; c++){
+            if(grid[r][c]==="1"){
+                cnt++;
+                sink(r,c);
+            }
+        }
     }
-  };
-
-  for (let i = 0; i < grid.length; i += 1) {
-    for (let j = 0; j < grid[i].length; j += 1) {
-      if (grid[i][j] === '1') {
-        counter += 1;
-        dfs(i, j);
-      }
-    }
-  }
-  return counter;
-};
+    
+    return cnt;
+    
+}
