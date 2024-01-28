@@ -4,18 +4,19 @@
  */
 var canVisitAllRooms = function(rooms) {
     const visited = new Set();
+    const queue = [0];
     
-    const dfs = (room) => {
-        if (visited.has(room)) return;
+    while(queue.length>0){
+        const curRoom = queue.shift();
+        visited.add(curRoom);
         
-        visited.add(room);
-        
-        for (const key of rooms[room]) {
-            dfs(key);
+        for(const key of rooms[curRoom]){
+            if(!visited.has(key)){
+                queue.push(key);
+                visited.add(key);
+                }
+            }
         }
-    };
-    
-    dfs(0);
     
     return visited.size === rooms.length;
 };
