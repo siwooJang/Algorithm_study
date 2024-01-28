@@ -3,19 +3,19 @@
  * @return {boolean}
  */
 var canVisitAllRooms = function(rooms) {
-    const visited = [];
-
-    const dfs = (curRoom) => {
-      visited.push(curRoom);
-
-      for (const key of rooms[curRoom]) {
-        if (!visited.includes(key)) {
-          dfs(key);
+    const visited = new Set();
+    
+    const dfs = (room) => {
+        if (visited.has(room)) return;
+        
+        visited.add(room);
+        
+        for (const key of rooms[room]) {
+            dfs(key);
         }
-      }
     };
-
+    
     dfs(0);
-
-    return visited.length === rooms.length;
+    
+    return visited.size === rooms.length;
 };
