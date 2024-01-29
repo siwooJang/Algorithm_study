@@ -3,7 +3,8 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-    const memo = {}
+    const memo = {};
+    
     const dfs = (n) => {
         if(n===1) return 1;
         if(n===2) return 2;
