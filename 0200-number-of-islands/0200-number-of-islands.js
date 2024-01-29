@@ -1,28 +1,35 @@
-function numIslands(grid){
-    const sink = (r,c) => {
-        grid[r][c] = "0";
-        [
-            [r,c-1],
-            [r,c+1],
-            [r-1,c],
-            [r+1,c]
-        ].forEach(([r,c])=>{
-            if(0<=r && r<grid.length && 0<=c && c<grid[r].length)
-                if(grid[r][c]==="1")
-                    sink(r,c);
-        });
+/**
+ * @param {character[][]} grid
+ * @return {number}
+ */
+var numIslands = function(grid) {
+    if (!grid || grid.length === 0) {
+        return 0;
+    }
+
+    const rows = grid.length;
+    const cols = grid[0].length;
+    let count = 0;
+
+    const bfs = (r, c) => {
+        const queue = [[r, c]];
+        while (queue.length > 0) {
+            const [row, col] = queue.shift();
+            if (row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] === '1') {
+                grid[row][col] = '0'; // Mark as visited
+                queue.push([row + 1, col], [row - 1, col], [row, col + 1], [row, col - 1]);
+            }
+        }
     };
-    
-    let cnt = 0;
-    for(let r=0; r<grid.length; r++){
-        for(let c=0; c<grid[r].length; c++){
-            if(grid[r][c]==="1"){
-                cnt++;
-                sink(r,c);
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (grid[i][j] === '1') {
+                count++;
+                bfs(i, j);
             }
         }
     }
-    
-    return cnt;
-    
-}
+
+    return count;
+};
