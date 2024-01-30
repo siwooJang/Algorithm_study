@@ -5,7 +5,7 @@
  */
 var uniquePaths = function(m, n) {
   // memo 배열 초기화
-  const dp = Array.from({ length: m }, () => Array(n).fill(0));
+  const dp = Array(m).fill().map(() => Array(n).fill(0));
 
   // 시작점에서의 경우의 수는 1
   dp[0][0] = 1;
