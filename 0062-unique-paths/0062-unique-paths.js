@@ -4,33 +4,25 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-  const memo = Array.from({ length: m }, () => Array(n).fill(-1));
+  // memo 배열 초기화
+  const dp = Array.from({ length: m }, () => Array(n).fill(0));
 
-  const dp = (r, c) => {
-    // 기저 조건
-    if (r === 0 && c === 0) {
-      memo[r][c] = 1;
-      return memo[r][c];
+  // 시작점에서의 경우의 수는 1
+  dp[0][0] = 1;
+
+  // 나머지 칸의 경우의 수 계산
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      // 왼쪽과 위쪽에서 오는 경우의 수를 더함
+      if (i > 0) {
+        dp[i][j] += dp[i - 1][j];
+      }
+      if (j > 0) {
+        dp[i][j] += dp[i][j - 1];
+      }
     }
+  }
 
-    // 이미 계산된 경우
-    if (memo[r][c] !== -1) {
-      return memo[r][c];
-    }
-
-    // 왼쪽과 위쪽에서 오는 경우의 수를 더함
-    let paths = 0;
-    if (r - 1 >= 0) {
-      paths += dp(r - 1, c);
-    }
-    if (c - 1 >= 0) {
-      paths += dp(r, c - 1);
-    }
-
-    // 계산된 값을 memo에 저장하고 반환
-    memo[r][c] = paths;
-    return memo[r][c];
-  };
-
-  return dp(m - 1, n - 1);
+  // 마지막 칸의 경우의 수가 최종 답
+  return dp[m - 1][n - 1];
 };
