@@ -3,26 +3,37 @@
  * @param {number} n
  * @return {number}
  */
-var uniquePaths = function(m, n) {
-  // memo 배열 초기화
-  const dp = Array.from({ length: m }, () => Array(n).fill(0));
+const uniquePaths = function(m, n) {
+    // memo 배열을 생성하고 -1로 초기화
+    const memo = Array(m).fill().map(() => Array(n).fill(-1));
+    
+    // 시작점을 1로 초기화
+    memo[0][0] = 1;
 
-  // 시작점에서의 경우의 수는 1
-  dp[0][0] = 1;
+    // 모든 행에 대해 반복
+    for (let r = 0; r < m; r++) {
+        // 모든 열에 대해 반복
+        for (let c = 0; c < n; c++) {
+            // 만약 memo[r][c]가 -1인 경우 (아직 방문하지 않은 경우)
+            if (memo[r][c] === -1) {
+                // 위에서 오는 경우의 수 계산
+                let fromTop = 0;
+                if (r > 0) {
+                    fromTop = memo[r - 1][c];
+                }
 
-  // 나머지 칸의 경우의 수 계산
-  for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
-      // 왼쪽과 위쪽에서 오는 경우의 수를 더함
-      if (i > 0) {
-        dp[i][j] += dp[i - 1][j];
-      }
-      if (j > 0) {
-        dp[i][j] += dp[i][j - 1];
-      }
+                // 왼쪽에서 오는 경우의 수 계산
+                let fromLeft = 0;
+                if (c > 0) {
+                    fromLeft = memo[r][c - 1];
+                }
+
+                // 현재 위치의 경우의 수는 위에서 오는 경우와 왼쪽에서 오는 경우의 합
+                memo[r][c] = fromTop + fromLeft;
+            }
+        }
     }
-  }
 
-  // 마지막 칸의 경우의 수가 최종 답
-  return dp[m - 1][n - 1];
+    // 우측 하단의 최종 결과 반환
+    return memo[m - 1][n - 1];
 };
