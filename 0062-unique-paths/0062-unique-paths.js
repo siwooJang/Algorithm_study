@@ -3,37 +3,34 @@
  * @param {number} n
  * @return {number}
  */
-const uniquePaths = function(m, n) {
-    // memo 배열을 생성하고 -1로 초기화
-    const memo = Array(m).fill().map(() => Array(n).fill(-1));
-    
-    // 시작점을 1로 초기화
-    memo[0][0] = 1;
+var uniquePaths = function(m, n) {
+  const memo = Array.from({ length: m }, () => Array(n).fill(-1));
 
-    // 모든 행에 대해 반복
-    for (let r = 0; r < m; r++) {
-        // 모든 열에 대해 반복
-        for (let c = 0; c < n; c++) {
-            // 만약 memo[r][c]가 -1인 경우 (아직 방문하지 않은 경우)
-            if (memo[r][c] === -1) {
-                // 위에서 오는 경우의 수 계산
-                let fromTop = 0;
-                if (r > 0) {
-                    fromTop = memo[r - 1][c];
-                }
-
-                // 왼쪽에서 오는 경우의 수 계산
-                let fromLeft = 0;
-                if (c > 0) {
-                    fromLeft = memo[r][c - 1];
-                }
-
-                // 현재 위치의 경우의 수는 위에서 오는 경우와 왼쪽에서 오는 경우의 합
-                memo[r][c] = fromTop + fromLeft;
-            }
-        }
+  const dp = (r, c) => {
+    // 기저 조건
+    if (r === 0 && c === 0) {
+      memo[r][c] = 1;
+      return memo[r][c];
     }
 
-    // 우측 하단의 최종 결과 반환
-    return memo[m - 1][n - 1];
+    // 이미 계산된 경우
+    if (memo[r][c] !== -1) {
+      return memo[r][c];
+    }
+
+    // 왼쪽과 위쪽에서 오는 경우의 수를 더함
+    let paths = 0;
+    if (r - 1 >= 0) {
+      paths += dp(r - 1, c);
+    }
+    if (c - 1 >= 0) {
+      paths += dp(r, c - 1);
+    }
+
+    // 계산된 값을 memo에 저장하고 반환
+    memo[r][c] = paths;
+    return memo[r][c];
+  };
+
+  return dp(m - 1, n - 1);
 };
