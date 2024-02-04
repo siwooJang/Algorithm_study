@@ -1,11 +1,10 @@
 function solution(participant, completion) {
-    let result = [];
-    let a = participant.sort()
-    let b = completion.sort()
-    for(let i =0; i<a.length;i++){
-        if(a[i]!=b[i]){
-            return a[i]
-        } 
+    let p = participant.sort();
+    let c = completion.sort();
+    for(let i =0; i<p.length; i++){
+        if(p[i]!=c[i]){
+            return p[i]
+        }
     }
+    
 }
-
