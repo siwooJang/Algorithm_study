@@ -1,12 +1,11 @@
-function solution(n) {
-    let result = []
-    let max = n.length / 2;
-    for(let i =0; i<n.length;i++){
-        if(result.length<max){
-                if(!result.includes(n[i])){
-                    result.push(n[i])
-                }
-            }
-        }
-    return result.length;    
+function solution(nums) {
+    let r = nums.length/2;
+    let s = new Set(nums);
+    let result = [...s];
+    if(r<=result.length){
+        return r
+    } else if(r>result.length){
+        return result.length
+    }
+    
 }
