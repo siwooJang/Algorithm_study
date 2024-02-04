@@ -1,10 +1,10 @@
-function solution(nums) {
+function solution(n) {
     let result = []
-    let max = nums.length / 2;
-    for(let i =0; i<nums.length;i++){
+    let max = n.length / 2;
+    for(let i =0; i<n.length;i++){
         if(result.length<max){
-                if(!result.includes(nums[i])){
-                    result.push(nums[i])
+                if(!result.includes(n[i])){
+                    result.push(n[i])
                 }
             }
         }
