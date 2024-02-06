@@ -1,7 +1,7 @@
 function solution(citations) {
     let result = 0;
-    let s = citations.sort((a,b)=>b-a)
-    for(let i=0; i<s.length;i++){
+    let s = citations.sort((a,b)=>b-a);
+    for(let i=0;i<s.length;i++){
         if(s[i]>i){
             result++
         }
@@ -12,4 +12,4 @@ function solution(citations) {
 
 // 자신의 인용횟수(citations[i])가 자신보다 인용횟수가 많은 논문 수(i) 보다 많으면 정답 수를 1 증가시킨다.
 
-//자신의 인용횟수가 자신보다 인용횟수가 많은 논문 수와 같아 질때 의 answer를 return하면 정답
+// 자신의 인용횟수가 자신보다 인용횟수가 많은 논문 수와 같거나 작아지면 거기까지가 H index. 이제 result return
