@@ -1,47 +1,34 @@
 function solution(numbers) {
-  const answer = new Set();
+    var answer = 0;
+    var set = new Set();
+    var value = [];  
+    var visited = Array(numbers.length).fill(false)
+    for (let i=1; i<=numbers.length; i++) {
+        dfs(0, i);
+    }
 
-  for (let i = 1; i <= numbers.length; i++) {
-    const permutation = [...getPermutation([...numbers], i)];
-    const primeNumbers = permutation.filter((arr) => {
-      const number = +arr.join("");
-      const isPrimeNumber = checkPrimeNumber(number);
-      return isPrimeNumber;
-    });
+    function dfs(cur_len, len) {
+        if (cur_len === len) {
+            set.add(parseInt(value.join('')));
+            return;
+        }
+        for (let i=0; i<numbers.length; i++) {
+            if (!visited[i]) {
+                value.push(numbers[i])
+                visited[i] = true;
+                dfs(cur_len + 1, len);
+                visited[i] = false;
+                value.pop()
+            }            
+        }
+    }
+    answer = [...set].filter(n => {
+        if (n < 2) return false
+        for (let i=2; i<=Math.sqrt(n); i++) {
+            if (n % i === 0) return false;
+        }
+        return true
+    })
 
-    primeNumbers.forEach((arr) => {
-      answer.add(+arr.join(""));
-    });
-  }
-  return answer.size;
+    return answer.length;
 }
-
-const checkPrimeNumber = (number) => {
-  if (number < 2) return false;
-
-  for (let i = 2; i <= Math.sqrt(number); i++) {
-    const remainder = number % i;
-    if (remainder === 0) return false;
-  }
-  return true;
-};
-
-const getPermutation = (arr, selectNumber) => {
-  const results = [];
-  if (selectNumber === 1) return arr.map((v) => [v]);
-  else {
-    arr.forEach((fixed, index, origin) => {
-      const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
-      const permutations = getPermutation(rest, selectNumber - 1);
-      const attached = permutations.map((permutation) => [
-        fixed,
-        ...permutation,
-      ]);
-      results.push(...attached);
-    });
-  }
-
-  return results;
-};
-
-// https://han-joon-hyeok.github.io/posts/programmers-find-prime-number-level2/
