@@ -1,4 +1,4 @@
-select distinct b.animal_id,b.name
-from animal_outs b left join animal_ins a on a.animal_id = b.animal_id
-where a.animal_id is null
-order by b.animal_id
+select distinct a.animal_id,a.name
+from animal_outs a left join animal_ins b on a.animal_id = b.animal_id
+where b.animal_id is null
+order by a.animal_id
