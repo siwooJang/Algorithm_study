@@ -1,16 +1,11 @@
 function solution(s){
-    let answer = [];
-    let a = 0; let b = 0;
+    let count = 0;
     for(let i =0; i<s.length; i++){
-        if(s[i]=='('){
-            answer.push(s[i]);
-            a++;
-        } 
-        if(s[i]==')'){
-            answer.pop();
-            b++;
+        if(s[i]=='(') count++;
+        if(s[i]==')') {
+            count--;
+            if(count<0) return false
         }
     }
-    if(a!=b) return false;
-    return answer.length == 0 ? true : false;
+    return count == 0;
 }
