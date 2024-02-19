@@ -2,24 +2,36 @@ function BFS(start, arr, target) {
   const tranX = [-1, 1, 0, 0];
   const tranY = [0, 0, -1, 1];
   const queue = [start];
-  const visited = new Set([start.join(',')]);
+  let time = 0;
 
   while (queue.length > 0) {
-    const [x, y, time] = queue.shift();
+    let size = queue.length;
 
-    for (let k = 0; k < 4; k++) {
-      const nx = x + tranX[k];
-      const ny = y + tranY[k];
+    for (let i = 0; i < size; i++) {
+      let [x, y] = queue.shift();
 
-      if (nx >= 0 && ny >= 0 && nx < arr.length && ny < arr[0].length && arr[nx][ny] !== "X" && !visited.has(`${nx},${ny}`)) {
-        if (arr[nx][ny] === target) {
-          return time + 1;
+      for (let k = 0; k < 4; k++) {
+        let nx = x + tranX[k];
+        let ny = y + tranY[k];
+
+        if (
+          nx >= 0 &&
+          ny >= 0 &&
+          nx < arr.length &&
+          ny < arr[0].length &&
+          arr[nx][ny] !== "X"
+        ) {
+          if (target === arr[nx][ny]) {
+            return time + 1;
+          }
+
+          queue.push([nx, ny]);
+          arr[nx][ny] = "X";
         }
-
-        queue.push([nx, ny, time + 1]);
-        visited.add(`${nx},${ny}`);
       }
     }
+
+    time++;
   }
 
   return -1;
@@ -28,24 +40,27 @@ function BFS(start, arr, target) {
 function solution(maps) {
   let leverCord;
   let startCord;
-
-  const maps1 = maps.map((element) => element.split(""));
-  const maps2 = maps.map((element) => element.split(""));
+  let maps1 = maps.map((element) => element.split(""));
+  let maps2 = maps.map((element) => element.split(""));
 
   for (let x = 0; x < maps.length; x++) {
     for (let y = 0; y < maps[0].length; y++) {
       if (maps[x][y] === "L") {
-        leverCord = [x, y, 0];
+        leverCord = [x, y];
       }
 
       if (maps[x][y] === "S") {
-        startCord = [x, y, 0];
+        startCord = [x, y];
       }
     }
   }
 
-  const a = BFS(startCord, [...maps1], "L");
-  const b = BFS(leverCord, [...maps2], "E");
+  let time1 = BFS(startCord, [...maps1], "L");
+  let time2 = BFS(leverCord, [...maps2], "E");
 
-  return a !== -1 && b !== -1 ? a + b : -1;
+  if (time1 === -1 || time2 === -1) {
+    return -1;
+  }
+
+  return time1 + time2;
 }
