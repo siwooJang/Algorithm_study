@@ -17,4 +17,4 @@ M = int(input())
 mnums = list(map(int, input().split())) 
 
 result = count_match(mnums,nums)
-print(' '.join(map(str,result)))
+print(*result) # unpack 한후 공백으로 구분해서 출력
