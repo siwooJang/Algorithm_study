@@ -1,26 +1,25 @@
-def div(s_row,s_col,size):
-    if size==1:
-        print(arr[s_row][s_col],end="")
-        return
-    num = arr[s_row][s_col]
-    
-    for row in range(s_row,s_row+size):
-        for col in range(s_col,s_col+size):
-            if num != arr[row][col]:
-                print("(",end="")
-                size //=2
-                div(s_row,s_col,size)
-                div(s_row,s_col+size,size)
-                div(s_row+size,s_col,size)
-                div(s_row+size,s_col+size,size)
-                print(")",end="")
-                return
-    print(arr[s_row][s_col],end="")
-    return
-
 n = int(input())
-arr = []
-for _ in range(n):
-    arr.append(list(map(int,list(input().rstrip()))))
+graph = [list(map(int, input())) for _ in range(n)]
 
-div(0,0,n)
+def dnc(x,y,n):
+    check = graph[x][y]
+    for i in range(x,x+n):
+        for j in range(y,y+n):
+            if check != graph[i][j]:
+                check = -1
+                break
+    if check == -1:
+        print('(', end='')
+        n = n // 2
+        dnc(x,y,n)
+        dnc(x,y+n,n)
+        dnc(x+n,y,n)
+        dnc(x+n,y+n,n)
+        print(')',end='')
+    elif check == 1:
+        print(1, end='')
+    else:
+        print(0, end='')
+
+
+dnc(0,0,n)
