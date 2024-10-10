@@ -1,5 +1,9 @@
 function solution(nums) {
-    let r = nums.length/2;
-    let result = [...new Set(nums)];
-    return r > result.length ? result.length : r
+    const n = nums.length/2;
+    const noDupNums = new Set(nums);
+    const a = [...noDupNums]
+    if(a.length>n){
+        return n
+    }
+    return a.length
 }
