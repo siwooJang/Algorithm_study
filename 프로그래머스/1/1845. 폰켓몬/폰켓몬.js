@@ -1,9 +1,8 @@
 function solution(nums) {
     const n = nums.length/2;
-    const noDupNums = new Set(nums);
-    const a = [...noDupNums]
-    if(a.length>n){
+    const noDup = [...new Set(nums)]
+    if(noDup.length>n){
         return n
     }
-    return a.length
+    return noDup.length
 }
