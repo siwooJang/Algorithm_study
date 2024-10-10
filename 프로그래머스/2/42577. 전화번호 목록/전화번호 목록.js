@@ -1,9 +1,14 @@
 function solution(phone_book) {
-    let result = [];
-    let sort = phone_book.sort()
-    for(let i =0; i<sort.length-1;i++){
-        if(sort[i]===sort[i+1].substring(0,sort[i].length)){
-            return false
+    let phone_map = new Map();
+    
+    for(let phone_number of phone_book){
+        phone_map.set(phone_number,true)
+    }
+    
+    for(let phone_number of phone_book){
+        for(let i =1; i<phone_number.length; i++){
+            let part = phone_number.substring(0,i);
+            if(phone_map.has(part)) return false
         }
     }
     return true
