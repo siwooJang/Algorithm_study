@@ -12,10 +12,7 @@ function solution(clothes) {
     
     const count = [...map].length
     const clothesMap = [...map]
-    
-    if(count == 1){
-        return clothesMap[0][1];
-    }
+
     for(let j=0; j<count; j++){
         result *= clothesMap[j][1]+1
     }
