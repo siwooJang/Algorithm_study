@@ -1,16 +1,25 @@
 function solution(clothes) {
-    let obj = {};
+    let map = new Map();
     let result = 1;
     
-    // obj 키값(v[1]) = 옷 종류, 있는 옷마다 value +1 , 단 없는경우 초기값 0 주고 +1
-    // headgear에 yellow_hat이 있으면 headger + 1
-    clothes.forEach( (v) => ( obj[v[1]] = (obj[v[1]]||0)+1 )) 
-    
-    // (옷 종류1 + 안입는경우) * (옷 종류2 + 안입는경우) * ...
-    // (a+1) * (b+1) ... , t는 한 종류에 있는 옷 갯수 
-    for( let a in obj){  
-        result *= obj[a] + 1;
+    for(let i=0; i<clothes.length; i++){
+        if(map.get(clothes[i][1])){
+            map.set(clothes[i][1],map.get(clothes[i][1])+1)
+        } else {
+            map.set(clothes[i][1],1)
+        }
     }
-
-     return result - 1;// 아무것도 안입는 경우 제외
+    
+    const count = [...map].length
+    const clothesMap = [...map]
+    
+    if(count == 1){
+        return clothesMap[0][1];
+    }
+    for(let j=0; j<count; j++){
+        result *= clothesMap[j][1]+1
+    }
+    
+    return result-1;
+    
 }
